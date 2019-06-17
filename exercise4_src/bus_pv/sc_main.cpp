@@ -15,7 +15,10 @@ int sc_main(int argc, char *argv[])
   bus.bus_port(ram1.target_export);
   bus.bus_port(ram2.target_export);
   sc_start();
-  ram1.dump(std::cout);
-  ram2.dump(std::cout);
+
+  ofstream ram1file ("ram1_dump.txt");
+  ram1.dump(ram1file);
+  ofstream ram2file ("ram2_dump.txt");
+  ram2.dump(ram2file);
   return 0;
 }
