@@ -3,8 +3,8 @@
 # Feel free to modify this Makefile 
 
 # These should point to the correct SystemC directories
-SYSTEMC_INCDIR = /usr/local/systemc/include
-SYSTEMC_LIBDIR = /usr/local/systemc/lib
+SYSTEMC_INCDIR = /usr/local/systemc-2.3.3/include
+SYSTEMC_LIBDIR = /usr/local/systemc-2.3.3/lib-linux64
 
 CXX     = g++
 CXXFLAGS = -O1 -g -Wall -Wno-reorder
