@@ -17,5 +17,13 @@ void Ram::read(  unsigned addr, unsigned &data )
   else
     data = mem[addr-start];
 }
+
+
+void Ram::dump(ostream &os)
+{
+  for(unsigned i = 0; i < sz ; i++){
+    os << "Address of Ram = "<< i+start <<": content =" << mem[i] << endl;
+  }
+}
   
 

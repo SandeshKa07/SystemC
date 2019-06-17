@@ -1,6 +1,7 @@
 #include "master.h"
 #include "ram.h"
 #include "bus_pv.h"
+#include <ostream>
 
 int sc_main(int argc, char *argv[])
 {
@@ -14,5 +15,7 @@ int sc_main(int argc, char *argv[])
   bus.bus_port(ram1.target_export);
   bus.bus_port(ram2.target_export);
   sc_start();
+  ram1.dump(std::cout);
+  ram2.dump(std::cout);
   return 0;
 }
