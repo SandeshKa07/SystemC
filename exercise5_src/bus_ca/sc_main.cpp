@@ -1,6 +1,6 @@
 #include "master.h"
 #include "ram.h"
-#include "bus_cx.h"
+#include "bus_ca.h"
 #include "adapter.h"
 #include "adder.h"
 #include "new_master.h"
@@ -15,8 +15,10 @@ int sc_main(int argc, char *argv[])
   Ram    ram3("ram3", 64,16);
   Adder  adder("adder");
   Adapter adpt("adpt");
-  Bus_cx bus("bus", 10, SC_NS);
+  Bus_ca bus("bus", 3);
   sc_signal<int> ch_x, ch_y, ch_s;
+  sc_clock clk("clk", 5, SC_NS, 0.5, 0, SC_NS);
+
   master1.initiator_port(bus.bus_export);
   master2.initiator_port(bus.bus_export);
   master3.initiator_port(bus.bus_export);
@@ -24,6 +26,7 @@ int sc_main(int argc, char *argv[])
   bus.bus_port(ram2.target_export);
   bus.bus_port(ram3.target_export);
   bus.bus_port(adpt);
+  bus.clock(clk);
   adpt.x(ch_x);
   adpt.y(ch_y);
   adpt.s(ch_s);

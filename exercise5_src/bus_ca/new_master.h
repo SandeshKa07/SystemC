@@ -5,7 +5,7 @@
 
 SC_MODULE(New_master)
 {
-  sc_port<bus_if,1> initiator_port;
+  sc_port<ext_bus_if,1> initiator_port;
 
   void action();
   SC_HAS_PROCESS(New_master);
