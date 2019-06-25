@@ -11,6 +11,7 @@ public:
   sc_in<int>  s;
 
   sc_port<ext_bus_if,1> initiator_port;
+  sc_event start_process;
 
   unsigned start_addr1;
   unsigned start_addr2;
@@ -26,7 +27,9 @@ public:
   SC_HAS_PROCESS(Adapter);
   Adapter( sc_module_name mn, unsigned id) : sc_module(mn)
   {
+    this->id = id;
     status = 0;
+    SC_THREAD(process);
     return; // alternative: export the bus_if here
   }
 

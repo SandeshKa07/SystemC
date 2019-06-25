@@ -19,6 +19,7 @@ void Adapter::write(unsigned addr, unsigned  data) {
     if(data != 0){
       //Start Computation
       status = data;
+      start_process.notify();
     }
     break;
   default :
@@ -45,5 +46,25 @@ void Adapter::read( unsigned addr, unsigned &data) {
     break;
   default :
     cout << "Adapter: read from invalid address" << endl;
+  }
+}
+
+void Adapter::process(){
+  unsigned data;
+  while(1){
+    wait(start_process);
+    for(int i = 0; i<block_size; i++){
+      initiator_port->read((start_addr1+i),data,id);
+      x.write(data);
+
+      initiator_port->read((start_addr2+i),data,id);
+      y.write(data);
+
+      wait(5, SC_NS);
+
+      data = s.read();
+      initiator_port->write((start_addr3+i),data, id);
+    }
+    status = 0;
   }
 }
