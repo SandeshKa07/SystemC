@@ -18,4 +18,6 @@ void New_master::action()
     wait(10, SC_NS);
     initiator_port->read(1028, status, id);
   }
+  //STOP Simulation
+  sc_stop();
 }
