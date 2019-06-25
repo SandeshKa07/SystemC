@@ -12,11 +12,21 @@ public:
 
   sc_port<ext_bus_if,1> initiator_port;
 
+  unsigned start_addr1;
+  unsigned start_addr2;
+  unsigned start_addr3;
+  unsigned block_size;
+  int status;
+
+  unsigned id;
   void write( unsigned addr, unsigned  data );
   void read(  unsigned addr, unsigned &data );
+  void process(void);
 
-  Adapter( sc_module_name mn) : sc_module(mn)
+  SC_HAS_PROCESS(Adapter);
+  Adapter( sc_module_name mn, unsigned id) : sc_module(mn)
   {
+    status = 0;
     return; // alternative: export the bus_if here
   }
 
