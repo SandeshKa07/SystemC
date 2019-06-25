@@ -10,10 +10,12 @@ public:
   sc_out<int> y;
   sc_in<int>  s;
 
+  sc_port<ext_bus_if,1> initiator_port;
+
   void write( unsigned addr, unsigned  data );
   void read(  unsigned addr, unsigned &data );
 
-  Adapter( sc_module_name mn ) : sc_module(mn)
+  Adapter( sc_module_name mn) : sc_module(mn)
   {
     return; // alternative: export the bus_if here
   }
