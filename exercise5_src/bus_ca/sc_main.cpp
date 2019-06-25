@@ -15,7 +15,7 @@ int sc_main(int argc, char *argv[])
   Ram    ram3("ram3", 64,16);
   Adder  adder("adder");
   Adapter adpt("adpt",3);
-  Bus_ca bus("bus", 3);
+  Bus_ca bus("bus", 4);
   sc_signal<int> ch_x, ch_y, ch_s;
   sc_clock clk("clk", 5, SC_NS, 0.5, 0, SC_NS);
 
